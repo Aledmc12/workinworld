@@ -38,7 +38,6 @@ function subscribeTheme(onStoreChange: () => void) {
 }
 
 function getSystemTheme(): Theme {
-  if (typeof window === "undefined") return "light";
   return window.matchMedia("(prefers-color-scheme: dark)").matches
     ? "dark"
     : "light";
@@ -53,26 +52,31 @@ function readStoredTheme(): Theme | null {
   }
 }
 
-function readClientState() {
-  return {
-    consent: localStorage.getItem(CONSENT_KEY) === "1",
-    theme: readStoredTheme() ?? getSystemTheme(),
-  };
+function readStoredConsent(): boolean {
+  try {
+    return localStorage.getItem(CONSENT_KEY) === "1";
+  } catch {
+    return false;
+  }
 }
 
-function readServerState() {
-  return { consent: false, theme: "light" as Theme };
+function readClientTheme(): Theme {
+  return readStoredTheme() ?? getSystemTheme();
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const clientState = useSyncExternalStore(
+  const storedTheme = useSyncExternalStore(
     subscribeTheme,
-    readClientState,
-    readServerState,
+    readClientTheme,
+    () => "light" as Theme,
+  );
+  const consent = useSyncExternalStore(
+    subscribeTheme,
+    readStoredConsent,
+    () => false,
   );
   const [themeOverride, setThemeOverride] = useState<Theme | null>(null);
-  const theme = themeOverride ?? clientState.theme;
-  const consent = clientState.consent;
+  const theme = themeOverride ?? storedTheme;
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
