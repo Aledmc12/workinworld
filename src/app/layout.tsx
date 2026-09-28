@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { LegalNoticeGate } from "@/components/layout/LegalNoticeGate";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { CookieBanner } from "@/components/legal/CookieBanner";
+import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
 const inter = Inter({
@@ -19,7 +20,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://workinworld.co"),
+  metadataBase: new URL(getSiteUrl()),
   title: {
     default: "Work in World · Orientación laboral para Colombia",
     template: "%s · Work in World",

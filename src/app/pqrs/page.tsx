@@ -122,7 +122,7 @@ export default async function PqrsPage({
         </button>
       </form>
       <p className="mt-4 text-sm text-[var(--muted)]">
-        También puede escribir a contacto@workinworld.co. Respondemos en un plazo
+        También puede escribir a workinworld03@gmail.com. Respondemos en un plazo
         máximo de 15 días hábiles.
       </p>
     </div>

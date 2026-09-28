@@ -8,9 +8,9 @@ export interface PqrsPayload {
 
 export async function enviarPqrs(payload: PqrsPayload): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.PQRS_NOTIFY_EMAIL ?? "contacto@workinworld.co";
+  const to = process.env.PQRS_NOTIFY_EMAIL ?? "workinworld03@gmail.com";
   const from =
-    process.env.PQRS_FROM_EMAIL ?? "Work in World <noreply@workinworld.co>";
+    process.env.PQRS_FROM_EMAIL ?? "Work in World <noreply@zomidev.com>";
 
   if (!apiKey) {
     console.info("[PQRS] Sin RESEND_API_KEY — solo registro en logs:", payload);

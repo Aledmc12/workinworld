@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
-import { routes } from "@/lib/routes";
 import { temasTrabajador } from "@/lib/content/derechos";
 import { temasEmpleador } from "@/lib/content/empleadores";
+import { routes } from "@/lib/routes";
+import { getSiteUrl } from "@/lib/site-url";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://workinworld.co";
+  const base = getSiteUrl();
   const staticRoutes = Object.values(routes).map((path) => ({
     url: `${base}${path}`,
     lastModified: new Date("2026-01-01"),
