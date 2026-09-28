@@ -1,0 +1,25 @@
+{
+  "anio": 2026,
+  "actualizado": "2026-01-01",
+  "smmlv": 1750905,
+  "auxilioTransporte": 249095,
+  "uvt": 52474,
+  "jornadaMaximaHorasSemana": 42,
+  "recargoDominicalFestivo": 0.9,
+  "aportes": {
+    "saludEmpleador": 0.085,
+    "saludTrabajador": 0.04,
+    "pensionEmpleador": 0.12,
+    "pensionTrabajador": 0.04,
+    "caja": 0.04,
+    "arlRiesgoI": 0.00522
+  },
+  "indemnizacion": {
+    "bajoSalario": { "primerAnio": 30, "adicional": 20 },
+    "altoSalario": { "primerAnio": 20, "adicional": 15 },
+    "minimoDias": 15
+  },
+  "interesesCesantias": 0.12,
+  "periodoPruebaMaxMeses": 2,
+  "prescripcionAnios": 3
+}

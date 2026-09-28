@@ -1,26 +1,99 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #f7f9fc;
+  --surface: #ffffff;
+  --surface-2: #eef2f7;
+  --border: #e2e8f0;
+  --text: #0b1f3a;
+  --muted: #5a6b7d;
+  --accent: #2563eb;
+  --accent-soft: rgba(37, 99, 235, 0.08);
+}
+
+[data-theme="dark"] {
+  --bg: #0a0f18;
+  --surface: #111827;
+  --surface-2: #1a2332;
+  --border: #243044;
+  --text: #eef2f7;
+  --muted: #94a3b8;
+  --accent: #3b82f6;
+  --accent-soft: rgba(59, 130, 246, 0.12);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-display: var(--font-manrope);
+  --font-sans: var(--font-inter);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, var(--hero-from) 0%, var(--hero-to) 100%);
+}
+
+.prose-wiw {
+  max-width: 65ch;
+  line-height: 1.7;
+}
+
+.prose-wiw p + p {
+  margin-top: 1rem;
+}
+
+/* ── Animaciones landing ── */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-zoom {
+  from {
+    transform: scale(1.05);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .motion-safe\:animate-hero-zoom {
+    animation: hero-zoom 12s ease-out forwards;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .motion-safe\:animate-hero-zoom {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
